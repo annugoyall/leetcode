@@ -14,29 +14,24 @@ class Solution:
         n = self.len_LL(head)
         num_elements = n//k
         ans = []
-        elements_left = n - num_elements*k
-
-        elements_to_append = num_elements
+        elements_left = n%k
 
         def helper(n, head):
-            curr_head = head
             ans.append(head)
-            while head and n:
-                if n == 1:
-                    temp = head.next
-                    head.next = None
-                    head = temp
-                    break
+            while head and n > 1:
                 head = head.next
                 n -= 1
+            if head:
+                temp = head.next
+                head.next = None
+                head = temp
             return head
 
         while head:
+            elements_to_append = num_elements + 1 if elements_left else num_elements
             if elements_left:
-                elements_to_append += 1
                 elements_left -= 1
             head = helper(elements_to_append, head)
-            elements_to_append = num_elements
         
         curr_arr_size = len(ans)
         for i in range(curr_arr_size, k):
