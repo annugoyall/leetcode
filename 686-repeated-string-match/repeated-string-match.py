@@ -14,8 +14,7 @@ class Solution:
         hash_a = self.findHash(a[:right])
 
         if hash_a == hash_b:
-            if a[left:right] == b:
-                return True
+            return True
         
         while right != len(a):
             hash_a -= (ord(a[left])*(10**(len(b)-1)))
@@ -24,8 +23,7 @@ class Solution:
             left += 1
             right += 1
             if hash_a == hash_b:
-                if a[left:right] == b:
-                    return True
+                return True
         return False
 
     def repeatedStringMatch(self, a: str, b: str) -> int:
