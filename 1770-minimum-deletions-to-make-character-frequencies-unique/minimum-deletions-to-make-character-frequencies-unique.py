@@ -7,12 +7,12 @@ class Solution:
         val_appeared = set()
         count = 0
         for i in freq_arr:
-            if i not in val_appeared:
-                val_appeared.add(i)
-            else:
+            if i in val_appeared:
                 curr = i
                 while curr > 0 and curr in val_appeared:
                     curr -= 1
                     count += 1
                 val_appeared.add(curr)
+                continue
+            val_appeared.add(i)
         return count
